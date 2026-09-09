@@ -1,4 +1,4 @@
-from sqlalchemy import ForeignKey
+from sqlalchemy import ForeignKey, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database import Base
@@ -6,6 +6,14 @@ from app.database import Base
 
 class Enrollment(Base):
     __tablename__ = "enrollments"
+
+    __table_args__ = (
+        UniqueConstraint(
+            "student_id",
+            "course_id",
+            name="uq_student_course"
+        ),
+    )
 
     id: Mapped[int] = mapped_column(
         primary_key=True,

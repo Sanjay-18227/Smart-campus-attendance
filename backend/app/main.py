@@ -2,7 +2,10 @@ from fastapi import FastAPI
 
 from app.database import engine, Base
 
-# Models
+# =========================
+# MODELS
+# =========================
+
 from app.models.user import User
 from app.models.student_profile import StudentProfile
 from app.models.parent_contact import ParentContact
@@ -10,10 +13,19 @@ from app.models.course import Course
 from app.models.enrollment import Enrollment
 from app.models.attendance import Attendance
 
-# Routes
+
+# =========================
+# ROUTES
+# =========================
+
 from app.routes.auth import router as auth_router
 from app.routes.admin import router as admin_router
+from app.routes.student import router as student_router
 
+
+# =========================
+# FASTAPI APP
+# =========================
 
 app = FastAPI(
     title="Smart Campus Attendance System",
@@ -22,14 +34,25 @@ app = FastAPI(
 )
 
 
-# Create database tables
+# =========================
+# CREATE DATABASE TABLES
+# =========================
+
 Base.metadata.create_all(bind=engine)
 
 
-# Register API routers
+# =========================
+# REGISTER ROUTERS
+# =========================
+
 app.include_router(auth_router)
 app.include_router(admin_router)
+app.include_router(student_router)
 
+
+# =========================
+# ROOT ENDPOINT
+# =========================
 
 @app.get("/")
 def root():
