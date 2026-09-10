@@ -14,27 +14,25 @@ class Attendance(Base):
         index=True
     )
 
+    # Student who is being marked
     student_id: Mapped[int] = mapped_column(
         ForeignKey("student_profiles.id"),
         nullable=False
     )
 
-    course_id: Mapped[int] = mapped_column(
-        ForeignKey("courses.id"),
-        nullable=False
-    )
-
+    # Attendance date and time
     date: Mapped[datetime] = mapped_column(
         DateTime,
         default=datetime.utcnow,
         nullable=False
     )
 
+    # Attendance status
     status: Mapped[str] = mapped_column(
         String(20),
         default="present",
         nullable=False
     )
 
+    # Relationship with student profile
     student = relationship("StudentProfile")
-    course = relationship("Course")

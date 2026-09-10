@@ -2,6 +2,7 @@ from fastapi import FastAPI
 
 from app.database import engine, Base
 
+
 # =========================
 # MODELS
 # =========================
@@ -9,8 +10,8 @@ from app.database import engine, Base
 from app.models.user import User
 from app.models.student_profile import StudentProfile
 from app.models.parent_contact import ParentContact
-from app.models.course import Course
-from app.models.enrollment import Enrollment
+
+from app.routes.attendance import router as attendance_router
 from app.models.attendance import Attendance
 
 
@@ -21,6 +22,7 @@ from app.models.attendance import Attendance
 from app.routes.auth import router as auth_router
 from app.routes.admin import router as admin_router
 from app.routes.student import router as student_router
+
 
 
 # =========================
@@ -49,6 +51,7 @@ app.include_router(auth_router)
 app.include_router(admin_router)
 app.include_router(student_router)
 
+app.include_router(attendance_router)
 
 # =========================
 # ROOT ENDPOINT
