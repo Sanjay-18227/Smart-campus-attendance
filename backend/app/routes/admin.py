@@ -1,3 +1,6 @@
+from datetime import date, datetime, timedelta
+from enum import Enum
+
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
@@ -7,6 +10,12 @@ from app.models.student_profile import StudentProfile
 from app.models.attendance import Attendance
 from app.models.parent_contact import ParentContact
 from app.services.permissions import require_admin
+
+
+# Attendance status options
+class AttendanceStatus(str, Enum):
+    PRESENT = "present"
+    ABSENT = "absent"
 
 
 router = APIRouter(
@@ -139,7 +148,7 @@ def delete_student(
     # Delete student profile
     db.delete(student)
 
-    # Delete the student's login account
+    # Delete student's login account
     user = db.query(User).filter(
         User.id == user_id
     ).first()
@@ -152,4 +161,99 @@ def delete_student(
     return {
         "message": "Student deleted successfully",
         "student_id": student_id
+    }
+
+
+# Get attendance records with optional filters
+@router.get("/attendance")
+def get_all_attendance(
+    attendance_date: date | None = None,
+    student_id: int | None = None,
+    department: str | None = None,
+    current_user: User = Depends(require_admin),
+    db: Session = Depends(get_db)
+):
+    query = (
+        db.query(Attendance, StudentProfile)
+        .join(
+            StudentProfile,
+            Attendance.student_id == StudentProfile.id
+        )
+    )
+
+    # Filter by date
+    if attendance_date:
+        start_datetime = datetime.combine(
+            attendance_date,
+            datetime.min.time()
+        )
+
+        end_datetime = start_datetime + timedelta(days=1)
+
+        query = query.filter(
+            Attendance.date >= start_datetime,
+            Attendance.date < end_datetime
+        )
+
+    # Filter by student
+    if student_id:
+        query = query.filter(
+            StudentProfile.id == student_id
+        )
+
+    # Filter by department
+    if department:
+        query = query.filter(
+            StudentProfile.department == department
+        )
+
+    records = query.order_by(
+        Attendance.date.desc()
+    ).all()
+
+    return [
+        {
+            "attendance_id": attendance.id,
+            "student_id": student.id,
+            "register_number": student.register_number,
+            "department": student.department,
+            "year": student.year,
+            "date": attendance.date,
+            "status": attendance.status
+        }
+        for attendance, student in records
+    ]
+
+
+# Update attendance status
+@router.put("/attendance/{attendance_id}")
+def update_attendance(
+    attendance_id: int,
+    status: AttendanceStatus,
+    current_user: User = Depends(require_admin),
+    db: Session = Depends(get_db)
+):
+    # Find attendance record
+    attendance = db.query(Attendance).filter(
+        Attendance.id == attendance_id
+    ).first()
+
+    if not attendance:
+        raise HTTPException(
+            status_code=404,
+            detail="Attendance record not found"
+        )
+
+    # Update attendance status
+    attendance.status = status.value
+
+    db.commit()
+    db.refresh(attendance)
+
+    return {
+        "message": "Attendance updated successfully",
+        "attendance_id": attendance.id,
+        "student_id": attendance.student_id,
+        "status": attendance.status,
+        "date": attendance.date
     }
