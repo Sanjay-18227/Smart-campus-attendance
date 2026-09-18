@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Campus | Dashboard</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ================= SIDEBAR BACKDROP ================= -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="closeSidebar()"></div>
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-logo">SC</div>
+
+            <div>
+                <h2>Smart Campus</h2>
+                <span>Attendance System</span>
+            </div>
+        </div>
+
+        <button class="sidebar-close" onclick="closeSidebar()" aria-label="Close sidebar">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+
+
+        <nav class="sidebar-nav">
+
+            <p class="nav-title">MAIN</p>
+
+            <button class="nav-item" onclick="showPage('dashboard')">
+                <span class="nav-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+                </span>
+                Dashboard
+            </button>
+
+            <button class="nav-item active" onclick="showPage('admin')" aria-current="page">
+                <span class="nav-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 7v5c0 5 3.5 8 8 9 4.5-1 8-4 8-9V7l-8-4Z"/><path d="m9 12 2 2 4-4"/></svg>
+                </span>
+                Admin Dashboard
+            </button>
+
+            <button class="nav-item" onclick="showPage('faculty')">
+                <span class="nav-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M8 6h8M8 10h8M8 14h5"/></svg>
+                </span>
+                Faculty Dashboard
+            </button>
+
+            <button class="nav-item" onclick="showPage('attendance')">
+                <span class="nav-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="4" rx="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="m9 16 2 2 4-4"/></svg>
+                </span>
+                Attendance
+            </button>
+
+            <button class="nav-item" onclick="showPage('students')">
+                <span class="nav-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </span>
+                Students
+            </button>
+
+            <button class="nav-item" onclick="showPage('reports')">
+                <span class="nav-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><line x1="10" x2="8" y1="9" y2="9"/></svg>
+                </span>
+                Reports
+            </button>
+
+
+            <p class="nav-title">SYSTEM</p>
+
+            <button class="nav-item" onclick="showPage('profile')">
+                <span class="nav-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </span>
+                Profile
+            </button>
+
+            <button class="nav-item" onclick="showPage('settings')">
+                <span class="nav-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                </span>
+                Settings
+            </button>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="help-box">
+                <strong>Need Help?</strong>
+                <p>Contact the administrator for support.</p>
+                <button type="button" onclick="showToast('Contact support: admin@smartcampus.edu')">Contact Support</button>
+            </div>
+
+            <button class="logout-btn" onclick="logout()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+                <span>Logout</span>
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <button class="mobile-menu" id="mobileMenuBtn" onclick="toggleSidebar()" aria-label="Toggle navigation" aria-expanded="false">
+                <svg id="menuIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+            </button>
+
+            <div class="page-heading">
+                <span>Overview</span>
+                <h1>Dashboard</h1>
+            </div>
+
+
+            <div class="topbar-right">
+
+                <!-- NOTIFICATION DROPDOWN -->
+                <div class="notification-wrapper">
+                    <button class="notification-btn" id="notificationBtn" onclick="toggleNotificationDropdown(event)" aria-haspopup="true" aria-expanded="false" aria-label="Notifications (3 unread)">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+                        <span class="notification-dot" aria-hidden="true"></span>
+                    </button>
+
+                    <div class="notification-dropdown" id="notificationDropdown" role="region" aria-label="Recent notifications">
+                        <div class="notification-header">
+                            <div>
+                                <strong>Notifications</strong>
+                                <span class="notif-badge">3 New</span>
+                            </div>
+                            <button class="text-btn notif-clear-btn" type="button" onclick="clearNotifications()">Clear</button>
+                        </div>
+                        <div class="notification-list">
+                            <div class="notification-item unread">
+                                <div class="notif-icon red">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+                                </div>
+                                <div class="notif-content">
+                                    <p class="notif-title">Low Attendance Warning</p>
+                                    <p class="notif-desc">3 students in Section A fell below 75% attendance threshold.</p>
+                                    <span class="notif-time">10 mins ago</span>
+                                </div>
+                            </div>
+
+                            <div class="notification-item unread">
+                                <div class="notif-icon green">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                </div>
+                                <div class="notif-content">
+                                    <p class="notif-title">QR Session Complete</p>
+                                    <p class="notif-desc">Morning attendance logged 42/50 students (84% present).</p>
+                                    <span class="notif-time">45 mins ago</span>
+                                </div>
+                            </div>
+
+                            <div class="notification-item">
+                                <div class="notif-icon blue">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                </div>
+                                <div class="notif-content">
+                                    <p class="notif-title">GPS Verification Active</p>
+                                    <p class="notif-desc">Campus radius geofencing calibrated to 50m accuracy.</p>
+                                    <span class="notif-time">2 hours ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- USER PROFILE DROPDOWN -->
+                <div class="user-profile-wrapper">
+                    <button class="user-profile" id="userProfileBtn" onclick="toggleProfileDropdown(event)" aria-haspopup="true" aria-expanded="false" aria-label="User profile menu">
+                        <div class="avatar">
+                            JB
+                        </div>
+
+                        <div class="user-info">
+                            <strong>Jebastin</strong>
+                            <span id="userRole">Administrator</span>
+                        </div>
+
+                        <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+
+                    <div class="profile-dropdown" id="profileDropdown" role="menu" aria-label="User account options">
+                        <div class="dropdown-header">
+                            <strong>Jebastin</strong>
+                            <span id="dropdownRole">Administrator · Faculty ID #849</span>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <button class="dropdown-item" role="menuitem" onclick="selectProfileOption('profile')">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                            Profile
+                        </button>
+                        <button class="dropdown-item" role="menuitem" onclick="selectProfileOption('settings')">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                            Settings
+                        </button>
+                        <div class="dropdown-divider"></div>
+                        <button class="dropdown-item text-danger" role="menuitem" onclick="logout()">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+                            Logout
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= DASHBOARD PAGE ================= -->
+
+        <section id="dashboardPage" class="page">
+
+            <div class="welcome-section">
+
+                <div>
+                    <p class="eyebrow" id="currentDateDisplay">THURSDAY, SEPTEMBER 10, 2026</p>
+
+                    <h2>
+                        <span id="timeGreeting">Good evening</span>, Jebastin
+                        <span>👋</span>
+                    </h2>
+
+                    <p>
+                        Here's what's happening with attendance today.
+                    </p>
+                </div>
+
+
+                <div class="role-selector">
+
+                    <label for="roleSelector">View as</label>
+
+                    <select id="roleSelector" onchange="changeRole()">
+                        <option value="admin">Administrator</option>
+                        <option value="faculty">Faculty</option>
+                        <option value="student">Student</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- STAT CARDS -->
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <span class="stat-label">Total Students</span>
+                        <div class="stat-icon blue" aria-hidden="true">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </div>
+                    </div>
+
+                    <h3 id="totalStudents">50</h3>
+
+                    <div class="stat-bottom">
+                        <span class="neutral">Active students</span>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <span class="stat-label">Present Today</span>
+                        <div class="stat-icon green" aria-hidden="true">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                    </div>
+
+                    <h3 id="presentStudents">42</h3>
+
+                    <div class="stat-bottom">
+                        <span class="positive">84%</span>
+                        <span>of students</span>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <span class="stat-label">Absent Today</span>
+                        <div class="stat-icon red" aria-hidden="true">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                        </div>
+                    </div>
+
+                    <h3 id="absentStudents">8</h3>
+
+                    <div class="stat-bottom">
+                        <span class="negative">16%</span>
+                        <span>of students</span>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <span class="stat-label">Attendance Rate</span>
+                        <div class="stat-icon purple" aria-hidden="true">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" x2="5" y1="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
+                        </div>
+                    </div>
+
+                    <h3 id="attendanceRate">84%</h3>
+
+                    <div class="stat-bottom">
+                        <span class="positive">+3.2%</span>
+                        <span>vs yesterday</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CONTENT GRID -->
+
+            <div class="content-grid">
+
+                <!-- ATTENDANCE TREND -->
+
+                <div class="panel trend-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3>Attendance Overview</h3>
+                            <p id="attendanceChartSubtitle">Attendance performance over the week</p>
+                        </div>
+
+                        <select class="period-select" id="attendancePeriodSelect" aria-label="Select attendance time period" onchange="handlePeriodChange(this.value)">
+                            <option value="week">This Week</option>
+                            <option value="month">This Month</option>
+                            <option value="semester">This Semester</option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="chart-wrapper">
+                        <canvas id="attendanceChart" role="img" aria-label="Attendance Overview Bar Chart"></canvas>
+                    </div>
+
+                </div>
+
+
+                <!-- QUICK ACTIONS -->
+
+                <div class="panel">
+
+                    <div class="panel-header">
+                        <div>
+                            <h3>Quick Actions</h3>
+                            <p>Frequently used actions</p>
+                        </div>
+                    </div>
+
+
+                    <div class="quick-actions">
+
+                        <button onclick="startSession()">
+                            <div class="action-icon blue" aria-hidden="true">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                            </div>
+                            <div>
+                                <strong>Start Session</strong>
+                                <span>Begin attendance</span>
+                            </div>
+                        </button>
+
+
+                        <button onclick="openQR()">
+                            <div class="action-icon purple" aria-hidden="true">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M21 21v.01"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/><path d="M3 12h.01"/><path d="M12 3h.01"/><path d="M12 16v.01"/><path d="M16 12h1"/><path d="M21 12v.01"/><path d="M12 21v-1"/></svg>
+                            </div>
+                            <div>
+                                <strong>QR Attendance</strong>
+                                <span>Manage QR session</span>
+                            </div>
+                        </button>
+
+
+                        <button onclick="viewReports()">
+                            <div class="action-icon green" aria-hidden="true">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M12 18v-4M8 18v-2M16 18v-6"/></svg>
+                            </div>
+                            <div>
+                                <strong>View Reports</strong>
+                                <span>Attendance reports</span>
+                            </div>
+                        </button>
+
+
+                        <button onclick="exportReport()">
+                            <div class="action-icon orange" aria-hidden="true">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                            </div>
+                            <div>
+                                <strong>Export Data</strong>
+                                <span>Download report</span>
+                            </div>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BOTTOM GRID -->
+
+            <div class="bottom-grid">
+
+                <!-- RECENT ATTENDANCE -->
+
+                <div class="panel table-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3>Recent Attendance</h3>
+                            <p>Latest attendance activity</p>
+                        </div>
+
+                        <button class="text-btn" onclick="viewAllAttendance()">
+                            View All →
+                        </button>
+
+                    </div>
+
+                                    <div class="attendance-controls" role="search" aria-label="Recent attendance filters">
+                                        <label class="sr-only" for="attendanceSearch">
+                                            Search attendance records
+                                        </label>
+
+                                        <input
+                                            id="attendanceSearch"
+                                            type="search"
+                                            placeholder="Search student name or ID..."
+                                            aria-label="Search student name or ID"
+                                        >
+
+                                        <label class="sr-only" for="attendanceStatusFilter">
+                                            Filter by status
+                                        </label>
+
+                                        <select id="attendanceStatusFilter" aria-label="Filter by status">
+                                            <option value="all">All Status</option>
+                                            <option value="Present">Present</option>
+                                            <option value="Absent">Absent</option>
+                                        </select>
+
+                                        <label class="sr-only" for="attendanceVerificationFilter">
+                                            Filter by verification
+                                        </label>
+
+                                        <select
+                                            id="attendanceVerificationFilter"
+                                            aria-label="Filter by verification"
+                                        >
+                                            <option value="all">All Verification</option>
+                                            <option value="QR + GPS">QR + GPS</option>
+                                            <option value="QR">QR</option>
+                                            <option value="Manual">Manual</option>
+                                        </select>
+
+                                        <button type="button" id="clearAttendanceFilters">
+                                            Clear Filters
+                                        </button>
+
+                                        <span id="attendanceResultCount" aria-live="polite">
+                                            Showing 0 of 0 records
+                                        </span>
+                                    </div>
+
+
+                    <div class="table-wrapper">
+
+                        <table aria-label="Recent attendance records">
+
+                            <thead>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>ID</th>
+                                    <th>Time</th>
+                                    <th>Method</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+
+                            
+
+                             <tbody id="recentAttendanceBody"></tbody>
+
+                            
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+                <!-- LOW ATTENDANCE -->
+
+                <div class="panel low-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3>Low Attendance</h3>
+                            <p>Students below 75%</p>
+                        </div>
+
+                        <span class="warning-count">3</span>
+
+                    </div>
+
+
+                    <div class="low-list">
+
+                        <div class="low-student">
+
+                            <div class="small-avatar">RM</div>
+
+                            <div class="low-info">
+                                <strong>Rahul M</strong>
+                                <span>ST021</span>
+                            </div>
+
+                            <strong class="attendance-low">61%</strong>
+
+                        </div>
+
+
+                        <div class="low-student">
+
+                            <div class="small-avatar">SN</div>
+
+                            <div class="low-info">
+                                <strong>Sneha N</strong>
+                                <span>ST034</span>
+                            </div>
+
+                            <strong class="attendance-low">68%</strong>
+
+                        </div>
+
+
+                        <div class="low-student">
+
+                            <div class="small-avatar">VK</div>
+
+                            <div class="low-info">
+                                <strong>Vijay K</strong>
+                                <span>ST041</span>
+                            </div>
+
+                            <strong class="attendance-low">72%</strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <button class="view-low-btn" onclick="viewLowAttendance()">
+                        View Low Attendance
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= OTHER PAGES ================= -->
+
+        <section id="adminPage" class="page active-page">
+
+            <div class="admin-overview">
+                <div>
+                    <p class="eyebrow" id="adminDateDisplay">THURSDAY, SEPTEMBER 10, 2026</p>
+                    <h2>Admin Dashboard</h2>
+                    <p>Manage students, faculty, attendance and reports.</p>
+                    <span class="admin-context" id="adminContextDisplay">Smart Campus · All Departments</span>
+                </div>
+                <button class="primary-btn" type="button" onclick="exportAdminReport()">Export Report</button>
+            </div>
+
+            <div class="stats-grid admin-stats-grid">
+                <div class="stat-card">
+                    <div class="stat-top"><span class="stat-label">Total Students</span><div class="stat-icon blue" aria-hidden="true">S</div></div>
+                    <h3 id="adminTotalStudents">1,248</h3>
+                    <div class="stat-bottom"><span class="neutral">Active records</span></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-top"><span class="stat-label">Total Faculty</span><div class="stat-icon purple" aria-hidden="true">F</div></div>
+                    <h3 id="adminTotalFaculty">86</h3>
+                    <div class="stat-bottom"><span class="neutral">Across departments</span></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-top"><span class="stat-label">Present Today</span><div class="stat-icon green" aria-hidden="true">✓</div></div>
+                    <h3 id="adminPresentToday">1,071</h3>
+                    <div class="stat-bottom"><span class="positive">86%</span><span>of students</span></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-top"><span class="stat-label">Attendance Rate</span><div class="stat-icon orange" aria-hidden="true">%</div></div>
+                    <h3 id="adminAttendanceRate">86%</h3>
+                    <div class="stat-bottom"><span class="positive">+2.1%</span><span>vs last week</span></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-top"><span class="stat-label">Active Sessions</span><div class="stat-icon blue" aria-hidden="true">●</div></div>
+                    <h3 id="adminActiveSessions">12</h3>
+                    <div class="stat-bottom"><span class="neutral">Live now</span></div>
+                </div>
+            </div>
+
+            <div class="admin-grid admin-grid-management">
+                <div class="panel table-panel">
+                    <div class="panel-header">
+                        <div><h3>Student Management</h3><p>Search and review student records</p></div>
+                    </div>
+                    <div class="attendance-controls admin-filter-controls" role="search" aria-label="Student management filters">
+                        <label class="sr-only" for="adminStudentSearch">Search student name or ID</label>
+                        <input id="adminStudentSearch" type="search" placeholder="Search name or ID..." aria-label="Search student name or ID">
+                        <label class="sr-only" for="adminStudentStatusFilter">Filter student account status</label>
+                        <select id="adminStudentStatusFilter" aria-label="Filter student account status">
+                            <option value="all">All Status</option><option value="Active">Active</option><option value="Inactive">Inactive</option>
+                        </select>
+                        <button type="button" id="adminStudentClearFilters">Clear Filters</button>
+                        <span id="adminStudentResultCount" aria-live="polite">Showing 0 of 0 records</span>
+                    </div>
+                    <div class="table-wrapper">
+                        <table aria-label="Admin student management records">
+                            <thead><tr><th>Student</th><th>Student ID</th><th>Department / Section</th><th>Attendance %</th><th>Account Status</th><th>Action</th></tr></thead>
+                            <tbody id="adminStudentBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="panel table-panel">
+                    <div class="panel-header">
+                        <div><h3>Faculty Management</h3><p>Review faculty assignments</p></div>
+                    </div>
+                    <div class="attendance-controls admin-filter-controls" role="search" aria-label="Faculty management filters">
+                        <label class="sr-only" for="adminFacultySearch">Search faculty</label>
+                        <input id="adminFacultySearch" type="search" placeholder="Search faculty..." aria-label="Search faculty">
+                        <label class="sr-only" for="adminFacultyDepartmentFilter">Filter faculty department</label>
+                        <select id="adminFacultyDepartmentFilter" aria-label="Filter faculty department"></select>
+                        <button type="button" id="adminFacultyClearFilters">Clear Filters</button>
+                        <span id="adminFacultyResultCount" aria-live="polite">Showing 0 of 0 records</span>
+                    </div>
+                    <div class="table-wrapper">
+                        <table aria-label="Admin faculty management records">
+                            <thead><tr><th>Faculty</th><th>Faculty ID</th><th>Department</th><th>Assigned Classes</th><th>Account Status</th><th>Action</th></tr></thead>
+                            <tbody id="adminFacultyBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-grid admin-grid-attendance">
+                <div class="panel table-panel">
+                    <div class="panel-header">
+                        <div><h3>Attendance Monitoring</h3><p>Campus-wide attendance activity</p></div>
+                    </div>
+                    <div class="attendance-controls admin-filter-controls" role="search" aria-label="Admin attendance filters">
+                        <label class="sr-only" for="adminAttendanceSearch">Search attendance by student name or ID</label>
+                        <input id="adminAttendanceSearch" type="search" placeholder="Search student name or ID..." aria-label="Search attendance by student name or ID">
+                        <label class="sr-only" for="adminAttendanceStatusFilter">Filter attendance status</label>
+                        <select id="adminAttendanceStatusFilter" aria-label="Filter attendance status"><option value="all">All Status</option><option value="Present">Present</option><option value="Absent">Absent</option></select>
+                        <label class="sr-only" for="adminAttendanceVerificationFilter">Filter verification method</label>
+                        <select id="adminAttendanceVerificationFilter" aria-label="Filter verification method"><option value="all">All Verification</option><option value="QR + GPS">QR + GPS</option><option value="QR">QR</option><option value="Manual">Manual</option></select>
+                        <label class="sr-only" for="adminAttendanceSectionFilter">Filter attendance section</label>
+                        <select id="adminAttendanceSectionFilter" aria-label="Filter attendance section"></select>
+                        <button type="button" id="adminAttendanceClearFilters">Clear Filters</button>
+                        <span id="adminAttendanceResultCount" aria-live="polite">Showing 0 of 0 records</span>
+                    </div>
+                    <div class="table-wrapper">
+                        <table aria-label="Admin attendance monitoring records">
+                            <thead><tr><th>Student</th><th>Student ID</th><th>Subject / Faculty</th><th>Section</th><th>Time</th><th>Verification</th><th>Status</th></tr></thead>
+                            <tbody id="adminAttendanceBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="panel admin-chart-panel">
+                    <div class="panel-header"><div><h3>Department Attendance</h3><p>Current attendance overview</p></div></div>
+                    <div class="admin-chart-wrapper"><canvas id="adminAttendanceChart" role="img" aria-label="Department attendance overview chart"></canvas></div>
+                </div>
+            </div>
+
+            <div class="admin-grid admin-grid-bottom">
+                <div class="panel table-panel">
+                    <div class="panel-header"><div><h3>Low Attendance</h3><p>Students below 75%</p></div><span class="warning-count" id="adminLowAttendanceCount">0</span></div>
+                    <div class="table-wrapper">
+                        <table aria-label="Admin low attendance students">
+                            <thead><tr><th>Student</th><th>Student ID</th><th>Department / Section</th><th>Attendance %</th><th>Alert Status</th><th>Action</th></tr></thead>
+                            <tbody id="adminLowAttendanceBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="panel admin-tools-panel">
+                    <div class="panel-header"><div><h3>Reports & Correction</h3><p>Admin-only tools</p></div></div>
+                    <div class="admin-report-form">
+                        <label for="adminReportType">Report type</label>
+                        <select id="adminReportType"><option>Attendance Report</option><option>Student Report</option><option>Faculty Report</option></select>
+                        <label for="adminReportDateRange">Date range</label>
+                        <select id="adminReportDateRange"><option>Today</option><option>This Week</option><option>This Month</option></select>
+                        <label for="adminReportDepartment">Department</label>
+                        <select id="adminReportDepartment"><option>All Departments</option><option>Computer Science</option><option>Information Technology</option><option>Electronics</option></select>
+                        <button class="primary-btn" type="button" onclick="exportAdminReport()">Export Report</button>
+                    </div>
+                    <div class="admin-correction-panel">
+                        <h4>Attendance Correction</h4>
+                        <p>Admin-only demo correction tool</p>
+                        <label for="adminCorrectionRecord">Student / record</label>
+                        <select id="adminCorrectionRecord"></select>
+                        <label for="adminCorrectionDate">Attendance date</label>
+                        <input id="adminCorrectionDate" type="date">
+                        <label for="adminCorrectionCurrentStatus">Current status</label>
+                        <select id="adminCorrectionCurrentStatus"><option>Present</option><option>Absent</option></select>
+                        <label for="adminCorrectionStatus">Corrected status</label>
+                        <select id="adminCorrectionStatus"><option>Present</option><option>Absent</option></select>
+                        <label for="adminCorrectionReason">Correction reason</label>
+                        <textarea id="adminCorrectionReason" rows="2" placeholder="Enter a reason"></textarea>
+                        <div class="admin-correction-actions"><button class="primary-btn" type="button" onclick="correctAttendanceRecord()">Save Correction</button><button class="secondary-btn" type="button" onclick="resetAdminCorrection()">Cancel</button></div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="facultyPage" class="page">
+
+            <div class="faculty-overview">
+                <div>
+                    <p class="eyebrow" id="facultyDateDisplay">THURSDAY, SEPTEMBER 10, 2026</p>
+                    <h2>Faculty Dashboard</h2>
+                    <p>Welcome back, <strong id="facultyNameDisplay">Dr. Meera Krishnan</strong></p>
+                    <span class="faculty-department" id="facultyDepartmentDisplay">Department of Computer Science and Engineering</span>
+                </div>
+
+                <button class="primary-btn" type="button" onclick="exportFacultyReport()">
+                    Export Report
+                </button>
+            </div>
+
+            <div class="stats-grid faculty-stats-grid">
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span class="stat-label">Assigned Classes</span>
+                        <div class="stat-icon blue" aria-hidden="true">3</div>
+                    </div>
+                    <h3 id="facultyAssignedClasses">3</h3>
+                    <div class="stat-bottom"><span class="neutral">This semester</span></div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span class="stat-label">Students Enrolled</span>
+                        <div class="stat-icon purple" aria-hidden="true">86</div>
+                    </div>
+                    <h3 id="facultyStudentsEnrolled">86</h3>
+                    <div class="stat-bottom"><span class="neutral">Across assigned sections</span></div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span class="stat-label">Present Today</span>
+                        <div class="stat-icon green" aria-hidden="true">✓</div>
+                    </div>
+                    <h3 id="facultyPresentToday">74</h3>
+                    <div class="stat-bottom"><span class="positive">86%</span><span>of enrolled</span></div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span class="stat-label">Attendance Rate</span>
+                        <div class="stat-icon orange" aria-hidden="true">%</div>
+                    </div>
+                    <h3 id="facultyAttendanceRate">86%</h3>
+                    <div class="stat-bottom"><span class="positive">+2.4%</span><span>vs last week</span></div>
+                </div>
+            </div>
+
+            <div class="faculty-grid faculty-grid-top">
+                <div class="panel">
+                    <div class="panel-header">
+                        <div>
+                            <h3>Today's Classes</h3>
+                            <p>Assigned teaching sessions</p>
+                        </div>
+                    </div>
+                    <div class="faculty-class-list" id="facultyClassList"></div>
+                </div>
+
+                <div class="panel faculty-session-panel">
+                    <div class="panel-header">
+                        <div>
+                            <h3>Attendance Session</h3>
+                            <p>Start a secure class session</p>
+                        </div>
+                        <span id="facultySessionStatusBadge" class="session-badge inactive">Inactive</span>
+                    </div>
+
+                    <div class="faculty-form-grid">
+                        <label for="facultySubjectSelect">Select Subject</label>
+                        <select id="facultySubjectSelect" aria-label="Select subject"></select>
+                        <label for="facultySectionSelect">Select Class/Section</label>
+                        <select id="facultySectionSelect" aria-label="Select class or section"></select>
+                    </div>
+
+                    <div class="faculty-session-actions">
+                        <button class="primary-btn" type="button" id="facultyStartSession" onclick="startFacultySession()">Start Attendance Session</button>
+                        <button class="secondary-btn" type="button" id="facultyStopSession" onclick="stopFacultySession()" disabled>Stop Attendance Session</button>
+                    </div>
+
+                    <div class="faculty-session-meta">
+                        <span>Session start <strong id="facultySessionStartTime">Not started</strong></span>
+                        <span>QR <strong id="facultyQrStatus" class="status-indicator active">Inactive</strong></span>
+                        <span>GPS <strong id="facultyGpsStatus" class="status-indicator active">Campus verified</strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faculty-grid faculty-grid-middle">
+                <div class="panel">
+                    <div class="panel-header">
+                        <div>
+                            <h3>Class-wise Attendance</h3>
+                            <p>Current attendance by assigned class</p>
+                        </div>
+                    </div>
+                    <div class="faculty-chart-wrapper">
+                        <canvas id="facultyAttendanceChart" role="img" aria-label="Faculty class-wise attendance chart"></canvas>
+                    </div>
+                </div>
+
+                <div class="panel faculty-verification-panel">
+                    <div class="panel-header">
+                        <div>
+                            <h3>Verification Status</h3>
+                            <p>Current campus controls</p>
+                        </div>
+                    </div>
+                    <div class="faculty-status-grid">
+                        <div class="faculty-status-row"><span class="status-dot green-dot"></span><span>QR verification</span><strong id="facultyVerificationQr">Inactive</strong></div>
+                        <div class="faculty-status-row"><span class="status-dot blue-dot"></span><span>GPS verification</span><strong>Campus verified</strong></div>
+                        <div class="faculty-status-row"><span class="status-dot green-dot"></span><span>Campus radius</span><strong>50m active</strong></div>
+                    </div>
+                    <button class="text-btn faculty-report-btn" type="button" onclick="exportFacultyReport()">Open Reports</button>
+                </div>
+            </div>
+
+            <div class="faculty-grid faculty-grid-bottom">
+                <div class="panel table-panel">
+                    <div class="panel-header">
+                        <div>
+                            <h3>Recent Attendance</h3>
+                            <p id="facultyAttendanceScope">Latest records for selected class</p>
+                        </div>
+                    </div>
+
+                    <div class="attendance-controls" role="search" aria-label="Faculty attendance filters">
+                        <label class="sr-only" for="facultyAttendanceSearch">Search student name or ID</label>
+                        <input id="facultyAttendanceSearch" type="search" placeholder="Search student name or ID..." aria-label="Search student name or ID">
+                        <label class="sr-only" for="facultyStatusFilter">Filter by status</label>
+                        <select id="facultyStatusFilter" aria-label="Filter by status">
+                            <option value="all">All Status</option>
+                            <option value="Present">Present</option>
+                            <option value="Absent">Absent</option>
+                        </select>
+                        <label class="sr-only" for="facultyVerificationFilter">Filter by verification</label>
+                        <select id="facultyVerificationFilter" aria-label="Filter by verification">
+                            <option value="all">All Verification</option>
+                            <option value="QR + GPS">QR + GPS</option>
+                            <option value="QR">QR</option>
+                            <option value="Manual">Manual</option>
+                        </select>
+                        <button type="button" id="clearFacultyAttendanceFilters">Clear Filters</button>
+                        <span id="facultyAttendanceResultCount" aria-live="polite">Showing 0 of 0 records</span>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table aria-label="Faculty recent attendance records">
+                            <thead>
+                                <tr><th>Student</th><th>ID</th><th>Time</th><th>Method</th><th>Status</th></tr>
+                            </thead>
+                            <tbody id="facultyAttendanceBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="panel low-panel">
+                    <div class="panel-header">
+                        <div>
+                            <h3>Low Attendance Students</h3>
+                            <p>Below 75% attendance</p>
+                        </div>
+                        <span class="warning-count" id="facultyLowAttendanceCount">3</span>
+                    </div>
+                    <div class="low-list" id="facultyLowAttendanceList"></div>
+                    <button class="view-low-btn" type="button" onclick="showToast('Student attendance details opened.')">View Student Details</button>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="attendancePage" class="page">
+
+            <div class="simple-page">
+                <span class="page-icon" aria-hidden="true">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="m9 16 2 2 4-4"/></svg>
+                </span>
+                <h2>Attendance Management</h2>
+                <p>QR + GPS attendance session management will appear here.</p>
+
+                <button class="primary-btn" onclick="startSession()">
+                    Start Attendance Session
+                </button>
+            </div>
+
+        </section>
+
+
+        <section id="studentsPage" class="page">
+
+            <div class="simple-page">
+                <span class="page-icon" aria-hidden="true">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </span>
+                <h2>Students</h2>
+                <p>Student records and attendance percentage will appear here.</p>
+            </div>
+
+        </section>
+
+
+        <section id="reportsPage" class="page">
+
+            <div class="simple-page">
+                <span class="page-icon" aria-hidden="true">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><line x1="10" x2="8" y1="9" y2="9"/></svg>
+                </span>
+                <h2>Attendance Reports</h2>
+                <p>Generate, filter and export attendance reports.</p>
+
+                <button class="primary-btn" onclick="exportReport()">
+                    Export Report
+                </button>
+            </div>
+
+        </section>
+
+
+        <section id="profilePage" class="page">
+
+            <div class="simple-page">
+                <span class="page-icon" aria-hidden="true">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </span>
+                <h2>Profile</h2>
+                <p>Manage your account information.</p>
+            </div>
+
+        </section>
+
+
+        <section id="settingsPage" class="page">
+
+            <div class="simple-page">
+                <span class="page-icon" aria-hidden="true">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                </span>
+                <h2>Settings</h2>
+                <p>System and account settings.</p>
+            </div>
+
+        </section>
+
+
+        <footer>
+            Smart Campus Attendance System · 2026
+        </footer>
+
+    </main>
+
+</div>
+
+
+<!-- NOTIFICATION -->
+
+<div id="toast" class="toast">
+    <strong>Smart Campus</strong>
+    <span id="toastMessage">Action completed successfully.</span>
+</div>
+
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="dashboard.js"></script>
+
+</body>
+</html>
